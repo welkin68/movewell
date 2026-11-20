@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="../../lib/CookieBytes.Core/CookieBytes.Core.Domain/CookieBytes.Core.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR.Contracts" Version="$(MediatRContractsVersion)" />
+    <PackageReference Include="FluentResults" Version="$(FluentResultsVersion)" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,24 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CookieBytesCore_EfCoreVersion>[10.0.0, 11.0.0)</CookieBytesCore_EfCoreVersion>
+    <CookieBytesCore_ExtensionsVersion>[10.0.0, 11.0.0)</CookieBytesCore_ExtensionsVersion>
+    <CookieBytesCore_ConfigurationVersion>[10.0.0, 11.0.0)</CookieBytesCore_ConfigurationVersion>
+    <CookieBytesCore_HostingAbstractionsVersion>[10.0.0, 11.0.0)</CookieBytesCore_HostingAbstractionsVersion>
+    <CookieBytesCore_HostingVersion>[10.0.0, 11.0.0)</CookieBytesCore_HostingVersion>
+    <CookieBytesCore_AspNetCoreOpenApiVersion>[10.0.0, 11.0.0)</CookieBytesCore_AspNetCoreOpenApiVersion>
+    <CookieBytesCore_MediatRContractsVersion>[2.0.1, 3.0.0)</CookieBytesCore_MediatRContractsVersion>
+    <CookieBytesCore_MediatRVersion>[12.5.0, 13.0.0)</CookieBytesCore_MediatRVersion>
+    <CookieBytesCore_FluentResultsVersion>[3.16.0, 5.0.0)</CookieBytesCore_FluentResultsVersion>
+    <CookieBytesCore_FluentValidationVersion>[11.0.0, 12.0.0)</CookieBytesCore_FluentValidationVersion>
+  </PropertyGroup>
+</Project>

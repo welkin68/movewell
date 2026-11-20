@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>CookieBytes.Core.Results</RootNamespace>
+    <AssemblyName>CookieBytes.Core.Results</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CookieBytes.Core.Application\CookieBytes.Core.Application.csproj" />
+    <ProjectReference Include="..\CookieBytes.Core.Infrastructure\CookieBytes.Core.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentResults" Version="$(CookieBytesCore_FluentResultsVersion)" />
+    <PackageReference Include="FluentValidation" Version="$(CookieBytesCore_FluentValidationVersion)" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="$(CookieBytesCore_FluentValidationVersion)" />
+    <PackageReference Include="MediatR" Version="$(CookieBytesCore_MediatRVersion)" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(CookieBytesCore_ExtensionsVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="$(CookieBytesCore_ExtensionsVersion)" />
+  </ItemGroup>
+
+</Project>

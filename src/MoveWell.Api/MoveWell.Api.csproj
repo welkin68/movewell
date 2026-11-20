@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <UserSecretsId>movewell-api-dev</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../MoveWell.Infrastructure/MoveWell.Infrastructure.csproj" />
+    <ProjectReference Include="../MoveWell.Application/MoveWell.Application.csproj" />
+    <ProjectReference Include="../../shared/MoveWell.Common/MoveWell.Common.csproj" />
+  </ItemGroup>
+
+</Project>

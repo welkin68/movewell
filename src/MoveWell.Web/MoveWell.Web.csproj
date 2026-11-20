@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!-- Web talks to Api over HTTP only (ADR-0001): no Domain/Application/Infrastructure references. -->
+  <ItemGroup>
+    <ProjectReference Include="../../shared/MoveWell.Common/MoveWell.Common.csproj" />
+    <ProjectReference Include="../../shared/MoveWell.Shared.Localization/MoveWell.Shared.Localization.csproj" />
+    <ProjectReference Include="../../shared/MoveWell.Shared.Globalization/MoveWell.Shared.Globalization.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>CookieBytes.Core.Infrastructure</RootNamespace>
+    <AssemblyName>CookieBytes.Core.Infrastructure</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="CookieBytes.Core.Results" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CookieBytes.Core.Application\CookieBytes.Core.Application.csproj" />
+    <ProjectReference Include="..\CookieBytes.Core.Domain\CookieBytes.Core.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="$(CookieBytesCore_MediatRVersion)" />
+    <PackageReference Include="FluentValidation" Version="$(CookieBytesCore_FluentValidationVersion)" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="$(CookieBytesCore_FluentValidationVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(CookieBytesCore_EfCoreVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="$(CookieBytesCore_EfCoreVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(CookieBytesCore_EfCoreVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="$(CookieBytesCore_ConfigurationVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="$(CookieBytesCore_ConfigurationVersion)" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(CookieBytesCore_ExtensionsVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="$(CookieBytesCore_HostingAbstractionsVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="$(CookieBytesCore_ExtensionsVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="$(CookieBytesCore_ExtensionsVersion)" />
+  </ItemGroup>
+
+</Project>

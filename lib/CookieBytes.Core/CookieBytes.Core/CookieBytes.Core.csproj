@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>CookieBytes.Core</RootNamespace>
+    <AssemblyName>CookieBytes.Core</AssemblyName>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CookieBytes.Core.Domain\CookieBytes.Core.Domain.csproj" />
+    <ProjectReference Include="..\CookieBytes.Core.Application\CookieBytes.Core.Application.csproj" />
+    <ProjectReference Include="..\CookieBytes.Core.Infrastructure\CookieBytes.Core.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

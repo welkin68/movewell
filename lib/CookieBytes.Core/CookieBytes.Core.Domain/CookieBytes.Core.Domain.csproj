@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>CookieBytes.Core.Domain</RootNamespace>
+    <AssemblyName>CookieBytes.Core.Domain</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="CookieBytes.Core.Infrastructure" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR.Contracts" Version="$(CookieBytesCore_MediatRContractsVersion)" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

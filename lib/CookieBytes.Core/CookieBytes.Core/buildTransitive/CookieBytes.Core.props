@@ -1,0 +1,24 @@
+<Project>
+<!--
+Optional visibility in Visual Studio: add to your PackageReference:
+<PackageReference Include="CookieBytes.Core" Version="..." GeneratePathProperty="true" />
+Then packaged markdown appears under the project as linked items (Documentation/CookieBytes.Core/).
+Without GeneratePathProperty, docs remain in the NuGet global cache under contentFiles/any/any/.
+-->
+<ItemGroup Condition="'$(PkgCookieBytes_Core)' != ''">
+<None Include="$(PkgCookieBytes_Core)\contentFiles\any\any\*.md"
+Link="Documentation\CookieBytes.Core\%(Filename)%(Extension)" />
+</ItemGroup>
+<!--
+Opt in to FluentResults integration (CookieBytes.Core.Results package).
+Set in your project or Directory.Build.props:
+<CookieBytesUseFluentResults>true</CookieBytesUseFluentResults>
+Or: dotnet add package CookieBytes.Core.Results
+-->
+<PropertyGroup>
+<CookieBytesUseFluentResults Condition="'$(CookieBytesUseFluentResults)' == ''">false</CookieBytesUseFluentResults>
+</PropertyGroup>
+<ItemGroup Condition="'$(CookieBytesUseFluentResults)' == 'true'">
+<PackageReference Include="CookieBytes.Core.Results" Version="0.5.8" />
+</ItemGroup>
+</Project>

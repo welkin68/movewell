@@ -1,0 +1,3 @@
+<Project>
+  <!-- External PackageReference items use PrivateAssets="all" in layer .csproj files (excluded from nuspec). -->
+</Project>
