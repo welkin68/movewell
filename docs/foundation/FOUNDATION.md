@@ -11,6 +11,7 @@
 | Architecture | `docs/architecture/architecture.md` + ADR-0001 (Accepted), ADR-0002 (Open), ADR-0003 (Accepted) |
 | Implementation guides (Accepted, D-18) | `docs/architecture/backend-guide.md`, `docs/architecture/frontend-guide.md` |
 | Rules | `CLAUDE.md` + `.claude/rules/` |
+| Repository | https://github.com/welkin68/movewell (branch `main`, first push 2026-11-20); `.gitattributes` CRLF |
 
 ## Solution (`MoveWell.sln`, .NET 10, `global.json` ≥ 10.0.400)
 
@@ -45,7 +46,7 @@ Middleware order: correlation id → exception handler (ProblemDetails) → secu
 `MoveWell.Common/Identity`: `Roles`, `Policies`. Localization/Globalization projects still empty.
 
 ### Web (`src/MoveWell.Web`)
-Still the `mvc` template — shell comes after the auth slice.
+Still the `mvc` template, with template Bootstrap/jQuery removed (frontend-guide §7) — shell comes after the auth slice.
 
 ### Tests
 | Project | Count |
@@ -59,4 +60,4 @@ Still the `mvc` template — shell comes after the auth slice.
 - Verified 2026-11-20: Api starts, applies migration on LocalDB, seeds 3 roles, `/health/live` and `/health/ready` → 200, correlation id echoed.
 
 ## Not yet
-Git; JWT + refresh tokens; auth commands/endpoints; SMS adapters; Web shell/theme/localization; smoke tests. Host/domain not bought (D-07).
+JWT + refresh tokens; auth commands/endpoints; SMS adapters; Web shell/theme/localization; smoke tests. Host/domain not bought (D-07).
