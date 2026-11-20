@@ -8,6 +8,8 @@ Never create a file outside a defined folder. First file of a new concern → cr
 - CQRS → `Application/Features/{Feature}/{Commands|Queries}/{Op}/{Op}Command.cs | Handler.cs | Validator.cs`.
 - DTOs → `Application/DTOs/{System}/`; public API contracts → `shared/MoveWell.Common/Contracts/{System}/`.
 - Domain event handlers → `Application/EventHandlers/{System}/`.
+- Application services shared by several handlers → `Application/Services/{System}/`; app-level error codes → `Application/Common/Errors/`.
+- Api error texts → `Api/Localization/Errors/errors.{fa|en}.json` (every new error code gets both).
 - EF config → `Infrastructure/Persistence/Configurations/{System}/`.
 - Api endpoints → `Api/Endpoints/{System}/`.
 - Web → `Web/Controllers/`, `Web/Areas/Admin/`, `Web/Views/`, shared UI `Web/Views/Shared/Ui/`, `wwwroot/{css|js}/shared/`.

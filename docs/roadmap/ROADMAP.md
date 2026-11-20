@@ -18,10 +18,11 @@ A guest can browse and learn exercises; the specialist manages the library from 
 - [x] Serilog + correlation id, global error handling (ProblemDetails), health check (`/health/live`, `/health/ready`) — Api
 - [x] SQL Server (LocalDB on dev), first migration `InitialIdentityProfilesOtp`, role seeding (+ first Admin when configured)
 - [ ] Web shell: RTL/LTR, Vazirmatn local, theme tokens, `fa-IR` default + `en-US` under `/en` (D-12), shared localization (JSON)
-- [ ] Identity: Admin + Content roles (staff), Member role; mobile + password; 1:1 `UserProfile` — stores, rules, roles, profile aggregate done; JWT + endpoints next
-- [ ] SMS OTP via `ISmsSender` (Dev adapter logs code): registration verification + password reset
+- [x] Identity: Admin + Content roles (staff), Member role; mobile + password; 1:1 `UserProfile`; JWT access + rotating refresh tokens (Api)
+- [x] SMS OTP via `ISmsSender` (Dev adapter logs code): registration verification + password reset (Api)
 - [x] `ArchitectureTests` (layer dependency checks) — 3 green
-- [ ] Smoke tests (WebApplicationFactory) for Api + Web
+- [x] Smoke tests for Api auth (14, WebApplicationFactory + LocalDB)
+- [ ] Web shell + BFF sign-in/registration pages; Web smoke tests
 
 **Exit:** `dotnet build` green; Api + Web start locally; staff can sign in to `/Admin`; a member can register/sign in with mobile + password; smoke tests green.
 

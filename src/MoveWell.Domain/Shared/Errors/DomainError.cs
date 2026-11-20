@@ -23,4 +23,11 @@ public sealed class DomainError : Error
     public string Code { get; }
 
     public ErrorKind Kind { get; }
+
+    /// <summary>Adds a value the localized message can show, e.g. <c>{seconds}</c> in "wait {seconds} seconds".</summary>
+    public DomainError WithArgument(string name, object value)
+    {
+        Metadata[name] = value;
+        return this;
+    }
 }

@@ -1,0 +1,48 @@
+{
+  "general.unexpected": "Something went wrong. Please try again.",
+  "general.rate_limited": "Too many requests. Please wait a moment and try again.",
+  "general.unauthorized": "You need to sign in to do this.",
+  "general.forbidden": "You are not allowed to do this.",
+
+  "text.fa_required": "Persian text is required.",
+  "text.too_long": "Text must be at most {max} characters.",
+  "slug.invalid": "The slug must be 3-120 lowercase latin letters, digits and hyphens.",
+  "mobile.invalid": "This is not a valid mobile number. Example: 09123456789",
+
+  "otp.invalid": "The verification code is not correct.",
+  "otp.expired": "The verification code has expired. Request a new one.",
+  "otp.too_many_attempts": "Too many wrong attempts. Request a new code.",
+  "otp.already_used": "This code was already used.",
+  "otp.not_verified": "The code has not been verified yet.",
+  "otp.invalid_settings": "Verification code settings are invalid.",
+  "otp.not_found": "There is no active code for this number. Request a new one.",
+  "otp.resend_too_soon": "Please wait {seconds} seconds before requesting a new code.",
+  "otp.too_many_requests": "Too many codes were requested for this number. Try again later.",
+  "sms.send_failed": "The SMS could not be sent. Try again in a moment.",
+
+  "profile.display_name_length": "Name must be {min}-{max} characters.",
+  "profile.user_required": "A profile must belong to a user.",
+
+  "auth.invalid_credentials": "Mobile number or password is not correct.",
+  "auth.locked_out": "Too many failed attempts. The account is locked for 15 minutes.",
+  "auth.mobile_not_confirmed": "The mobile number of this account is not verified.",
+  "auth.already_registered": "This number is already registered. Sign in or reset your password.",
+  "auth.invalid_refresh_token": "Your session has ended. Please sign in again.",
+  "auth.not_signed_in": "You need to sign in to do this.",
+  "auth.current_password_wrong": "The current password is not correct.",
+
+  "password.too_short": "Password must be at least 8 characters.",
+  "password.requires_digit": "Password must contain at least one digit.",
+  "password.requires_lower": "Password must contain a lowercase letter.",
+  "password.requires_upper": "Password must contain an uppercase letter.",
+  "password.requires_non_alphanumeric": "Password must contain a symbol.",
+  "password.requires_unique_chars": "Password needs more different characters.",
+  "password.invalid": "The password does not meet the requirements.",
+
+  "validation.mobile_required": "Enter your mobile number.",
+  "validation.password_required": "Enter your password.",
+  "validation.password_too_long": "The password is too long.",
+  "validation.code_format": "The verification code must contain digits only.",
+  "validation.display_name_length": "Name must be 2-60 characters.",
+  "validation.refresh_token_required": "Invalid session. Please sign in again."
+}

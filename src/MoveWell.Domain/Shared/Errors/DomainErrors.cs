@@ -9,7 +9,7 @@ public static class DomainErrors
             new("text.fa_required", "Persian text is required.");
 
         public static DomainError TooLong(int maxLength) =>
-            new("text.too_long", $"Text must be at most {maxLength} characters.");
+            new DomainError("text.too_long", $"Text must be at most {maxLength} characters.").WithArgument("max", maxLength);
     }
 
     public static class Slug
@@ -48,7 +48,9 @@ public static class DomainErrors
     public static class Profile
     {
         public static DomainError DisplayNameLength(int min, int max) =>
-            new("profile.display_name_length", $"Display name must be {min}-{max} characters.");
+            new DomainError("profile.display_name_length", $"Display name must be {min}-{max} characters.")
+                .WithArgument("min", min)
+                .WithArgument("max", max);
 
         public static readonly DomainError UserRequired =
             new("profile.user_required", "A profile must belong to a user.");

@@ -10,6 +10,7 @@
   <!-- Shared NuGet versions for MoveWell projects (lib/CookieBytes.Core has its own props) -->
   <PropertyGroup>
     <EfCoreVersion>10.0.0</EfCoreVersion>
+    <AspNetCoreVersion>10.0.0</AspNetCoreVersion>
     <MediatRVersion>12.5.0</MediatRVersion>
     <MediatRContractsVersion>2.0.1</MediatRContractsVersion>
     <FluentValidationVersion>11.11.0</FluentValidationVersion>

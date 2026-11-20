@@ -1,6 +1,6 @@
 # Foundation — what exists
 
-> Last updated: 2026-11-20 · Gate G0 in progress: skeleton + domain building blocks + persistence + Api host done; auth slice next.
+> Last updated: 2026-11-20 · Gate G0 in progress: backend auth slice done (Api); Web shell + BFF auth pages next.
 
 ## Docs & rules
 | Item | Status |
@@ -25,25 +25,35 @@
 | Repository ports | `IUserProfileRepository`, `IOtpChallengeRepository` |
 
 ### Application (`src/MoveWell.Application`)
-`Abstractions/Persistence/IMoveWellUnitOfWork` (UserProfiles, OtpChallenges). No features yet.
+| Area | What |
+|------|------|
+| Ports | `IMoveWellUnitOfWork`, `IIdentityService`, `ITokenService`, `ISmsSender`, `IOtpCodeGenerator`, `IOtpHasher` |
+| Services | `OtpService` (send with resend 120 s + 5/hour per mobile limits; verify against latest challenge, attempt saved on failure) |
+| Features/Auth | `StartRegistration`, `CompleteRegistration` (checks first, then OTP, one transaction), `SignIn`, `RefreshSession`, `SignOut`, `StartPasswordReset` (neutral for unknown numbers), `CompletePasswordReset` (revokes all sessions), `ChangePassword` |
+| Errors | `AuthErrors` (auth.*, otp.*, sms.*, password.*), `ValidationCodes` (validator messages are codes) |
+| Options | `OtpOptions` (length 6, lifetime 120 s, 5 attempts, resend 120 s, 5/hour) |
 
 ### Infrastructure (`src/MoveWell.Infrastructure`)
 | Area | What |
 |------|------|
 | Persistence | `MoveWellDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>` (audit, soft-delete filters, ignore events), design-time factory (LocalDB or `MOVEWELL_DESIGN_CONNECTION`), `MoveWellUnitOfWork`, configurations Users/Otp, `ValueObjectConverters` (Mobile, Slug) |
-| Migrations | `20261120133856_InitialIdentityProfilesOtp` — AspNet* tables, `UserProfiles` (FK cascade to user, unique UserId), `OtpChallenges` (index Mobile+PurposeId+CreatedAt) |
+| Migrations | `InitialIdentityProfilesOtp` — AspNet* tables, `UserProfiles`, `OtpChallenges`; `AddRefreshTokens` — `RefreshTokens` (unique TokenHash, FamilyId, UserId+RevokedAt) |
 | Repositories | `UserProfileRepository`, `OtpChallengeRepository` |
-| Identity | `ApplicationUser`, `ApplicationRole`, Identity rules (password ≥ 8 + digit, lockout 5 / 15 min, confirmed phone required), `HttpCurrentUserService` (`sub` claim) |
+| Identity | `ApplicationUser`, `ApplicationRole`, Identity rules (password ≥ 8 + digit, lockout 5 / 15 min, confirmed phone required), `HttpCurrentUserService` (`sub` claim), `IdentityService`, `TokenService` (JWT HS256 15 min; refresh 30 days hashed, rotation, family revoke on reuse), `RefreshToken` table |
+| Security / SMS | `OtpCodeGenerator` (CSPRNG), `OtpHasher` (HMAC-SHA256 with `Otp:HashSecret`), `NullSmsSender` (default), `DevSmsSender` (logs text; Development/Testing only), `SmsTexts` fa/en |
+| Auth DI | `AddMoveWellJwtAuthentication` (bearer validation, policies AdminOnly / ContentEditor / Member); dev/test get random secrets per start, production requires `Jwt:SigningKey` + `Otp:HashSecret` |
 | Seeding | `IdentitySeeder`: roles Admin/Content/Member; first Admin from `Admin:Seed:*` (user-secrets / env vars) with profile |
 | Host | `DatabaseInitializer` (migrate when `Database:MigrateOnStartup`, then seed) |
 | Logging | `SerilogSetup` (console + daily file 14 days, correlation id) |
 | DI | `AddMoveWellInfrastructure` (Core + FluentResult validation mode, MediatR over Application, EF SQL Server with retry, Identity, health check `database` tagged `ready`) |
 
 ### Api (`src/MoveWell.Api`, http://localhost:5100)
-Middleware order: correlation id → exception handler (ProblemDetails) → security headers → Serilog request log. Endpoints: `/health/live`, `/health/ready`. User-secrets id `movewell-api-dev`. Dev DB: LocalDB `MoveWell_Dev` (auto-migrate in Development only).
+Middleware: forwarded headers (loopback only) → correlation id → exception handler (ProblemDetails) → status pages → security headers → Serilog request log → authentication → authorization → rate limiter.
+Endpoints: `/health/live`, `/health/ready`; `/api/v1/auth/` `register/start`, `register/complete`, `signin`, `refresh`, `signout`, `password/reset/start`, `password/reset/complete`, `password/change` (Member).
+Errors: `ResultHttpExtensions` → ProblemDetails `errors: [{code, message}]`, message from `Localization/Errors/errors.{fa|en}.json` by `Accept-Language`; 400/401/403/404/409/429 (+ Retry-After). Rate limits per IP: auth 10/min, OTP send 20/hour (`RateLimits:*`). User-secrets id `movewell-api-dev`. Dev DB: LocalDB `MoveWell_Dev` (auto-migrate in Development only).
 
 ### Shared
-`MoveWell.Common/Identity`: `Roles`, `Policies`. Localization/Globalization projects still empty.
+`MoveWell.Common`: `Identity/Roles`, `Identity/Policies`, `Contracts/Auth` (requests/responses), `Contracts/Common/ApiError`. Localization/Globalization projects still empty.
 
 ### Web (`src/MoveWell.Web`)
 Still the `mvc` template, with template Bootstrap/jQuery removed (frontend-guide §7) — shell comes after the auth slice.
@@ -53,7 +63,8 @@ Still the `mvc` template, with template Bootstrap/jQuery removed (frontend-guide
 |---------|-------|
 | Domain.Tests | 65 green (MobileNumber, Slug, LocalizedText, Culture, OtpChallenge, UserProfile) |
 | ArchitectureTests | 3 green |
-| Application.Tests, SmokeTests | empty |
+| SmokeTests | 14 green — full auth flows over HTTP on a throw-away LocalDB database (register, normalization, conflict fa, wrong code, weak password, resend 429, wrong password en, refresh rotation + reuse, sign-out, reset, change password) |
+| Application.Tests | empty |
 
 ## Build notes
 - Security pin `System.Security.Cryptography.Pkcs 10.0.15` in `Directory.Build.props`; remaining NU1902/NU1903 only from `lib/CookieBytes.Core` (fix upstream).

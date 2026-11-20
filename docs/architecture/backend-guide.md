@@ -595,6 +595,17 @@ Logs folder + Serilog daily files; `/health/ready` checked by a free uptime moni
 
 ---
 
+## 9b. Implementation notes (auth slice, 2026-11-20)
+
+Decisions taken while building, consistent with the accepted design:
+- **Registration says "already registered" (409 `auth.already_registered`).** Hiding it would leave a person waiting for an SMS that never comes; per-IP rate limits cover mass probing. Password reset and sign-in stay neutral (unknown number = wrong password / silent OK).
+- **CompleteRegistration checks first, then burns the code:** password policy, display name and "already registered" are checked before the OTP is verified, so a typo never wastes a valid code. Account + profile + OTP consumption commit in one transaction (so the EF retrying execution strategy is not used).
+- **Validation messages are error codes** (`ValidationCodes`) — Core's FluentResult mode keeps only the message. The Api localizes domain and validation codes the same way (`Api/Localization/Errors/errors.{fa|en}.json`, placeholders like `{seconds}` from error metadata).
+- **Error kinds → HTTP:** Validation 400, Unauthorized 401, Forbidden 403, NotFound 404, Conflict 409, TooManyRequests 429 (+ `Retry-After`).
+- **Refresh tokens** are an Infrastructure table (`RefreshTokens`), not a domain aggregate: hashed (SHA-256), rotated on every refresh, family revoked on reuse, all revoked on password reset/change.
+- **Dev secrets:** in Development/Testing a missing `Jwt:SigningKey` / `Otp:HashSecret` gets a random value per process start (tokens die on restart). Production refuses to start without them.
+- **SMS adapters:** `Null` (default) and `Dev` (logs the text with the code; refused outside Development/Testing).
+
 ## 10. Build order (how we will actually walk through this)
 
 1. Domain shared VOs + Enumerations + tests

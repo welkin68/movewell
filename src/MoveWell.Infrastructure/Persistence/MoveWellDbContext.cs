@@ -34,6 +34,8 @@ public sealed class MoveWellDbContext : IdentityDbContext<ApplicationUser, Appli
 
     public DbSet<OtpChallenge> OtpChallenges => Set<OtpChallenge>();
 
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         ApplyAudit();

@@ -1,0 +1,48 @@
+{
+  "general.unexpected": "خطای پیش‌بینی‌نشده‌ای رخ داد. لطفاً دوباره تلاش کنید.",
+  "general.rate_limited": "درخواست‌های شما زیاد بود. کمی صبر کنید و دوباره تلاش کنید.",
+  "general.unauthorized": "برای این کار باید وارد حساب خود شوید.",
+  "general.forbidden": "اجازه‌ی انجام این کار را ندارید.",
+
+  "text.fa_required": "متن فارسی الزامی است.",
+  "text.too_long": "متن نباید بیشتر از {max} نویسه باشد.",
+  "slug.invalid": "نشانی (slug) باید ۳ تا ۱۲۰ نویسه از حروف کوچک لاتین، عدد و خط تیره باشد.",
+  "mobile.invalid": "شماره موبایل معتبر نیست. نمونه: ۰۹۱۲۳۴۵۶۷۸۹",
+
+  "otp.invalid": "کد تأیید درست نیست.",
+  "otp.expired": "کد تأیید منقضی شده است. کد جدید بگیرید.",
+  "otp.too_many_attempts": "تعداد تلاش‌های اشتباه زیاد بود. کد جدید بگیرید.",
+  "otp.already_used": "این کد قبلاً استفاده شده است.",
+  "otp.not_verified": "کد هنوز تأیید نشده است.",
+  "otp.invalid_settings": "تنظیمات کد تأیید نامعتبر است.",
+  "otp.not_found": "کد فعالی برای این شماره وجود ندارد. کد جدید بگیرید.",
+  "otp.resend_too_soon": "برای دریافت کد جدید {seconds} ثانیه صبر کنید.",
+  "otp.too_many_requests": "برای این شماره کد زیادی درخواست شده است. بعداً دوباره تلاش کنید.",
+  "sms.send_failed": "ارسال پیامک انجام نشد. چند لحظه بعد دوباره تلاش کنید.",
+
+  "profile.display_name_length": "نام باید بین {min} تا {max} نویسه باشد.",
+  "profile.user_required": "پروفایل باید به یک کاربر تعلق داشته باشد.",
+
+  "auth.invalid_credentials": "شماره موبایل یا رمز عبور درست نیست.",
+  "auth.locked_out": "به‌دلیل تلاش‌های ناموفق زیاد، حساب موقتاً قفل شد. ۱۵ دقیقه بعد دوباره تلاش کنید.",
+  "auth.mobile_not_confirmed": "شماره موبایل این حساب تأیید نشده است.",
+  "auth.already_registered": "این شماره قبلاً ثبت‌نام کرده است. وارد شوید یا رمز خود را بازیابی کنید.",
+  "auth.invalid_refresh_token": "نشست شما به پایان رسیده است. دوباره وارد شوید.",
+  "auth.not_signed_in": "برای این کار باید وارد حساب خود شوید.",
+  "auth.current_password_wrong": "رمز فعلی درست نیست.",
+
+  "password.too_short": "رمز عبور باید حداقل ۸ نویسه باشد.",
+  "password.requires_digit": "رمز عبور باید حداقل یک عدد داشته باشد.",
+  "password.requires_lower": "رمز عبور باید حداقل یک حرف کوچک لاتین داشته باشد.",
+  "password.requires_upper": "رمز عبور باید حداقل یک حرف بزرگ لاتین داشته باشد.",
+  "password.requires_non_alphanumeric": "رمز عبور باید حداقل یک نماد داشته باشد.",
+  "password.requires_unique_chars": "رمز عبور نویسه‌های متنوع‌تری لازم دارد.",
+  "password.invalid": "رمز عبور شرایط لازم را ندارد.",
+
+  "validation.mobile_required": "شماره موبایل را وارد کنید.",
+  "validation.password_required": "رمز عبور را وارد کنید.",
+  "validation.password_too_long": "رمز عبور خیلی طولانی است.",
+  "validation.code_format": "کد تأیید باید فقط عدد باشد.",
+  "validation.display_name_length": "نام باید بین ۲ تا ۶۰ نویسه باشد.",
+  "validation.refresh_token_required": "نشست نامعتبر است. دوباره وارد شوید."
+}
