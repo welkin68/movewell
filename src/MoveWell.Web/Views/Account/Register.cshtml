@@ -1,0 +1,28 @@
+@model RegisterForm
+@{
+    var t = Ui.For("public/account/account");
+    ViewData["Title"] = $"{t["register.title"]} | {Ui.Common["site.name"]}";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/account.css" asp-append-version="true" />
+}
+<div class="container auth-page">
+    <div class="card auth-card">
+        <div class="auth-steps" aria-hidden="true">
+            <span class="auth-steps__item" data-done="true"></span>
+            <span class="auth-steps__item"></span>
+        </div>
+        <h1 class="auth-card__title">@t["register.title"]</h1>
+        <p class="auth-card__lead">@t["register.lead"]</p>
+
+        <form class="form" method="post" asp-action="Register" data-guard novalidate>
+            <partial name="Ui/_FormErrors" model="Model.Errors" />
+            <partial name="Ui/_MobileField" model="Model.Mobile" />
+            <button type="submit" class="btn btn--primary btn--block">@t["register.submit"]</button>
+        </form>
+
+        <p class="form-footer mt-5">
+            <span>@t["register.have_account"] <a asp-action="SignIn">@Ui.Common["nav.signin"]</a></span>
+        </p>
+    </div>
+</div>

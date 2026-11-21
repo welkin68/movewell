@@ -1,6 +1,6 @@
 # Foundation — what exists
 
-> Last updated: 2026-11-20 · Gate G0 in progress: backend auth slice done (Api); Web shell + BFF auth pages next.
+> Last updated: 2026-11-21 · **G0 closed** (exit criteria met). Current gate: G1 — exercise library (Admin), waiting on Q-05, Q-06, Q-09, Q-13.
 
 ## Docs & rules
 | Item | Status |
@@ -53,17 +53,30 @@ Endpoints: `/health/live`, `/health/ready`; `/api/v1/auth/` `register/start`, `r
 Errors: `ResultHttpExtensions` → ProblemDetails `errors: [{code, message}]`, message from `Localization/Errors/errors.{fa|en}.json` by `Accept-Language`; 400/401/403/404/409/429 (+ Retry-After). Rate limits per IP: auth 10/min, OTP send 20/hour (`RateLimits:*`). User-secrets id `movewell-api-dev`. Dev DB: LocalDB `MoveWell_Dev` (auto-migrate in Development only).
 
 ### Shared
-`MoveWell.Common`: `Identity/Roles`, `Identity/Policies`, `Contracts/Auth` (requests/responses), `Contracts/Common/ApiError`. Localization/Globalization projects still empty.
+| Project | What |
+|---------|------|
+| `MoveWell.Common` | `Identity/Roles`, `Identity/Policies`, `Cultures/Cultures` (fa/en, `/en` prefix), `Contracts/Auth`, `Contracts/Common/ApiError` |
+| `MoveWell.Shared.Globalization` | `CulturePrefixMiddleware` (`/en` → PathBase, so routes exist once and links keep the language), `PathBaseRequestCultureProvider`, `CulturePath.For` (language switch/hreflang), `UseMoveWellCultures` |
+| `MoveWell.Shared.Localization` | JSON `IStringLocalizer` (`Resources/{area}/{page}/{name}.{fa\|en}.json`), `AddMoveWellJsonLocalization` |
 
-### Web (`src/MoveWell.Web`)
-Still the `mvc` template, with template Bootstrap/jQuery removed (frontend-guide §7) — shell comes after the auth slice.
+### Web (`src/MoveWell.Web`, http://localhost:5200) — BFF
+| Area | What |
+|------|------|
+| Host | Serilog (`logs/movewell-web-.log`), correlation id (sent to Api), security headers + strict CSP (`'self'` only), status pages `/error/{code}`, Persian output not entity-encoded |
+| Api access | One named HttpClient `MoveWellApi` (`Api:BaseUrl`) + `ApiContextHandler` (Accept-Language, X-Correlation-Id, X-Forwarded-For); `ApiClientBase` → `ApiResult` with the Api's localized `{code, message}` errors; `AuthApiClient` |
+| Sessions | Cookies `.movewell.member` and `.movewell.staff`; Api tokens stored inside the encrypted cookie; `SessionRefresher` renews the access token 60 s before expiry or signs out; Data Protection keys persisted (`DataProtection:KeysPath`, default `App_Data/keys`) |
+| Public pages | Home (hero, how it works, library "coming soon"), `/account/register` → `/account/verify` (+ resend with countdown), `/account/signin`, `/account/signout`, `/account/forgot` → `/account/reset`, `/account` (my account). Pending mobile kept in TempData (never in URL). All under `/en` too |
+| Admin | `/admin/account/signin` (Admin/Content only; member accounts refused and their token revoked), `/admin` dashboard shell (sidebar with G1 items marked "soon"), area route |
+| UI system | Calm Clinic tokens (`css/shared/tokens.css`), base (logical properties, layers), components (header, bottom nav, footer, buttons, cards, forms, OTP field, alerts, toast), page CSS, admin shell CSS; Vazirmatn local; SVG sprite + placeholder mark + hero illustration; `js/shared/ui.js` (password toggle, OTP digits, resend countdown, toast, double-submit guard) |
+| Texts | `Resources/public/{shared,home,account,error}`, `Resources/admin/shared` — fa + en |
+| Dev run | `.claude/launch.json` (api :5100, web :5200) |
 
 ### Tests
 | Project | Count |
 |---------|-------|
 | Domain.Tests | 65 green (MobileNumber, Slug, LocalizedText, Culture, OtpChallenge, UserProfile) |
 | ArchitectureTests | 3 green |
-| SmokeTests | 14 green — full auth flows over HTTP on a throw-away LocalDB database (register, normalization, conflict fa, wrong code, weak password, resend 429, wrong password en, refresh rotation + reuse, sign-out, reset, change password) |
+| SmokeTests | 28 green on a throw-away LocalDB database. Api auth (14): register, normalization, conflict fa, wrong code, weak password, resend 429, wrong password en, refresh rotation + reuse, sign-out, reset, change password. Web (14, Web → in-memory Api): fa RTL / en LTR home, `/en` links, no external assets + CSP on 5 pages, localized 404, registration through HTML forms, password mismatch, Api error in page language, admin staff sign-in (seeded test admin), member refused by admin, sign-out |
 | Application.Tests | empty |
 
 ## Build notes
@@ -71,4 +84,4 @@ Still the `mvc` template, with template Bootstrap/jQuery removed (frontend-guide
 - Verified 2026-11-20: Api starts, applies migration on LocalDB, seeds 3 roles, `/health/live` and `/health/ready` → 200, correlation id echoed.
 
 ## Not yet
-JWT + refresh tokens; auth commands/endpoints; SMS adapters; Web shell/theme/localization; smoke tests. Host/domain not bought (D-07).
+Exercise library (G1); real SMS provider (Q-12); profile editing; first real Admin account (set `Admin:Seed:*` with user-secrets on the Api); brand identity (placeholder mark in use, D-10). Host/domain not bought (D-07).

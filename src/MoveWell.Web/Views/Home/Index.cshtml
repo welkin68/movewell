@@ -1,8 +1,48 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    var t = Ui.For("public/home/index");
+    ViewData["Title"] = t["title"].Value;
+    ViewData["Description"] = t["meta.description"].Value;
+    var signedIn = User.Identity?.IsAuthenticated == true;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/home.css" asp-append-version="true" />
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <section class="hero">
+        <div>
+            <span class="hero__eyebrow">@t["hero.eyebrow"]</span>
+            <h1 class="hero__title">@t["hero.title"]</h1>
+            <p class="hero__lead">@t["hero.lead"]</p>
+            @if (!signedIn)
+            {
+                <div class="hero__actions cluster">
+                    <a class="btn btn--accent" asp-controller="Account" asp-action="Register">@t["hero.cta.register"]</a>
+                    <a class="btn btn--ghost" asp-controller="Account" asp-action="SignIn">@t["hero.cta.signin"]</a>
+                </div>
+            }
+        </div>
+        <img class="hero__art" src="~/img/home/hero.svg" alt="" width="320" height="320" />
+    </section>
+
+    <section class="section" aria-labelledby="how-title">
+        <h2 class="section__title" id="how-title">@t["how.title"]</h2>
+        <div class="grid-auto">
+            @for (var i = 1; i <= 3; i++)
+            {
+                <article class="card step-card">
+                    <span class="step-card__number">@i.ToString(CultureInfo.CurrentCulture)</span>
+                    <h3>@t[$"how.{i}.title"]</h3>
+                    <p class="text-muted">@t[$"how.{i}.text"]</p>
+                </article>
+            }
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="card notice stack">
+            <h2>@t["soon.title"]</h2>
+            <p class="text-muted">@t["soon.text"]</p>
+        </div>
+    </section>
 </div>

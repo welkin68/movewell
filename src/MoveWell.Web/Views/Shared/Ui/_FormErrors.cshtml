@@ -1,0 +1,23 @@
+@model FormErrors
+@if (Model.Any)
+{
+    <div class="alert alert--error" role="alert" tabindex="-1" data-form-errors>
+        <svg class="icon" aria-hidden="true"><use href="@(Url.Content("~/icons/sprite.svg"))#alert" /></svg>
+        <div>
+            @if (Model.Messages.Count == 1)
+            {
+                <p>@Model.Messages[0]</p>
+            }
+            else
+            {
+                <p>@Ui.Common["form.errors_title"]</p>
+                <ul>
+                    @foreach (var message in Model.Messages)
+                    {
+                        <li>@message</li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+}

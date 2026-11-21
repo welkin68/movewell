@@ -1,0 +1,52 @@
+@model VerifyForm
+@{
+    var t = Ui.For("public/account/account");
+    ViewData["Title"] = $"{t["verify.title"]} | {Ui.Common["site.name"]}";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/account.css" asp-append-version="true" />
+}
+<div class="container auth-page">
+    <div class="card auth-card">
+        <div class="auth-steps" aria-hidden="true">
+            <span class="auth-steps__item" data-done="true"></span>
+            <span class="auth-steps__item" data-done="true"></span>
+        </div>
+        <h1 class="auth-card__title">@t["verify.title"]</h1>
+        <p class="auth-card__lead">@t["verify.lead"]</p>
+
+        <form class="form" method="post" asp-action="Verify" data-guard novalidate>
+            <partial name="Ui/_FormErrors" model="Model.Errors" />
+
+            <div class="field">
+                <label class="field__label" for="code">@t["code.label"]</label>
+                <input class="input otp-input" id="code" name="Code" value="@Model.Code"
+                       inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]*" maxlength="6" required dir="ltr" data-otp
+                       aria-describedby="code-hint" />
+                <p class="field__hint" id="code-hint">@t["code.hint", Model.MaskedMobile]</p>
+            </div>
+
+            <div class="field">
+                <label class="field__label" for="display-name">@t["name.label"]</label>
+                <input class="input" id="display-name" name="DisplayName" value="@Model.DisplayName"
+                       autocomplete="name" required minlength="2" maxlength="60" aria-describedby="display-name-hint" />
+                <p class="field__hint" id="display-name-hint">@t["name.hint"]</p>
+            </div>
+
+            <partial name="Ui/_PasswordField" model="@(new PasswordField("password", "Password", t["password.label"], "new-password", t["password.hint"]))" />
+            <partial name="Ui/_PasswordField" model="@(new PasswordField("confirm-password", "ConfirmPassword", t["password.confirm.label"], "new-password"))" />
+
+            <p class="field__hint">@t["terms.accept"]</p>
+            <button type="submit" class="btn btn--primary btn--block">@t["verify.submit"]</button>
+        </form>
+
+        <div class="resend mt-5">
+            <a asp-action="Register">@t["verify.change_mobile"]</a>
+            <form method="post" asp-action="ResendRegistrationCode" class="inline-form">
+                <button type="submit" class="btn btn--link" data-countdown="@Model.ResendWaitSeconds">
+                    <span data-countdown-label>@t["verify.resend"]</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

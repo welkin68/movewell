@@ -1,0 +1,27 @@
+/* Admin shell (frontend-guide §6): sidebar + top bar, denser spacing. */
+@layer components {
+  .admin { display: grid; min-block-size: 100dvh; grid-template-rows: var(--header-height) 1fr; }
+  @media (min-width: 64rem) { .admin { grid-template-columns: 16rem 1fr; grid-template-rows: var(--header-height) 1fr; } }
+
+  .admin__topbar {
+    grid-column: 1 / -1; display: flex; align-items: center; gap: var(--space-4);
+    padding-inline: var(--gutter); background: var(--color-card); border-block-end: 1px solid var(--color-border);
+  }
+  .admin__topbar-actions { margin-inline-start: auto; display: flex; align-items: center; gap: var(--space-3); }
+
+  .admin__sidebar { display: none; background: var(--color-card); border-inline-end: 1px solid var(--color-border); padding: var(--space-4); }
+  @media (min-width: 64rem) { .admin__sidebar { display: block; } }
+  .admin__nav { display: flex; flex-direction: column; gap: var(--space-1); }
+  .admin__nav .nav-link { justify-content: flex-start; }
+  .admin__nav .nav-link[aria-disabled="true"] { color: var(--color-muted); pointer-events: none; opacity: 0.7; }
+
+  .admin__main { padding: var(--space-6) var(--gutter); }
+  .admin__page-title { margin-block-end: var(--space-6); }
+
+  .stat-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); }
+  .stat { display: flex; flex-direction: column; gap: var(--space-1); }
+  .stat__value { font-size: var(--step-3); font-weight: var(--weight-bold); color: var(--color-primary); }
+  .stat__label { color: var(--color-muted); font-size: var(--step--1); }
+
+  .admin-auth { min-block-size: 100dvh; display: grid; place-items: center; padding: var(--gutter); }
+}

@@ -480,3 +480,6 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# MoveWell local runtime data (Data Protection keys, local files): never commit
+**/App_Data/

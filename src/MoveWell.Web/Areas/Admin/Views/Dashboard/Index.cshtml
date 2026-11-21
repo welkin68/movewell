@@ -1,0 +1,14 @@
+@{
+    var t = Ui.For("admin/shared/layout");
+    ViewData["Title"] = t["dashboard.title"].Value;
+}
+<h1 class="admin__page-title">@t["dashboard.title"]</h1>
+<div class="stack">
+    <div class="card">
+        <p>@t["dashboard.welcome", User.Identity?.Name ?? string.Empty]</p>
+    </div>
+    <div class="alert alert--info">
+        <svg class="icon" aria-hidden="true"><use href="@(Url.Content("~/icons/sprite.svg"))#info" /></svg>
+        <p>@t["dashboard.next"]</p>
+    </div>
+</div>

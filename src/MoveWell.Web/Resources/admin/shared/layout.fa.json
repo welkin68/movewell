@@ -1,0 +1,18 @@
+{
+  "title.suffix": "مدیریت MoveWell",
+  "nav.dashboard": "پیشخوان",
+  "nav.exercises": "حرکات",
+  "nav.taxonomy": "دسته‌بندی‌ها",
+  "nav.media": "رسانه‌ها",
+  "nav.soon": "به‌زودی",
+  "nav.view_site": "مشاهده سایت",
+  "nav.signout": "خروج",
+  "nav.admin": "منوی مدیریت",
+  "signin.title": "ورود مدیریت",
+  "signin.lead": "این بخش فقط برای کادر MoveWell است.",
+  "signin.submit": "ورود",
+  "signin.not_staff": "این حساب دسترسی به بخش مدیریت ندارد.",
+  "dashboard.title": "پیشخوان",
+  "dashboard.welcome": "سلام {0}، به بخش مدیریت خوش آمدید.",
+  "dashboard.next": "مدیریت کتابخانه حرکات (حرکات، دسته‌بندی‌ها و رسانه‌ها) در مرحله بعدی (G1) به این بخش اضافه می‌شود."
+}

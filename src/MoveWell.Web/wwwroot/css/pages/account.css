@@ -1,0 +1,10 @@
+@layer components {
+  .auth-page { display: grid; place-items: start center; padding-block: var(--space-6); }
+  .auth-card { inline-size: 100%; max-inline-size: 28rem; }
+  .auth-card__title { margin-block-end: var(--space-2); }
+  .auth-card__lead { color: var(--color-muted); margin-block-end: var(--space-6); }
+  .auth-steps { display: flex; gap: var(--space-2); margin-block-end: var(--space-5); }
+  .auth-steps__item { flex: 1; block-size: 4px; border-radius: var(--radius-pill); background: var(--color-border); }
+  .auth-steps__item[data-done="true"] { background: var(--color-primary); }
+  .resend { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); font-size: var(--step--1); color: var(--color-muted); }
+}

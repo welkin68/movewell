@@ -12,6 +12,7 @@ Never create a file outside a defined folder. First file of a new concern → cr
 - Api error texts → `Api/Localization/Errors/errors.{fa|en}.json` (every new error code gets both).
 - EF config → `Infrastructure/Persistence/Configurations/{System}/`.
 - Api endpoints → `Api/Endpoints/{System}/`.
-- Web → `Web/Controllers/`, `Web/Areas/Admin/`, `Web/Views/`, shared UI `Web/Views/Shared/Ui/`, `wwwroot/{css|js}/shared/`.
+- Web → `Web/Controllers/`, `Web/Areas/Admin/{Controllers|Views}/`, `Web/Views/`, shared UI partials `Web/Views/Shared/Ui/`, form/view models `Web/Models/{Area}/`, Api clients `Web/Services/{System}/` (plumbing in `Web/Services/Api/`), cookies/session `Web/Authentication/`, middleware `Web/Middleware/`.
+- Web assets → `wwwroot/css/{shared|pages|admin}/`, `wwwroot/js/shared/`, `wwwroot/icons/sprite.svg`, `wwwroot/img/{area}/`, `wwwroot/fonts/`.
 - Localization → `Web/Resources/{area}/{page}/`.
 - Tests mirror source.

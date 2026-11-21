@@ -1,6 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <!-- Web talks to Api over HTTP only (ADR-0001): no Domain/Application/Infrastructure references. -->
+  <PropertyGroup>
+    <UserSecretsId>movewell-web-dev</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="$(SerilogAspNetCoreVersion)" />
+    <PackageReference Include="Serilog.Sinks.File" Version="$(SerilogSinksFileVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Resources\**\*.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="../../shared/MoveWell.Common/MoveWell.Common.csproj" />
     <ProjectReference Include="../../shared/MoveWell.Shared.Localization/MoveWell.Shared.Localization.csproj" />

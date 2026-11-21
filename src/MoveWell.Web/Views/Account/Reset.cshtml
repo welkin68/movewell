@@ -1,0 +1,35 @@
+@model ResetForm
+@{
+    var t = Ui.For("public/account/account");
+    ViewData["Title"] = $"{t["reset.title"]} | {Ui.Common["site.name"]}";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/account.css" asp-append-version="true" />
+}
+<div class="container auth-page">
+    <div class="card auth-card">
+        <h1 class="auth-card__title">@t["reset.title"]</h1>
+        <p class="auth-card__lead">@t["reset.lead"]</p>
+
+        <form class="form" method="post" asp-action="Reset" data-guard novalidate>
+            <partial name="Ui/_FormErrors" model="Model.Errors" />
+
+            <div class="field">
+                <label class="field__label" for="code">@t["code.label"]</label>
+                <input class="input otp-input" id="code" name="Code" value="@Model.Code"
+                       inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]*" maxlength="6" required dir="ltr" data-otp
+                       aria-describedby="code-hint" />
+                <p class="field__hint" id="code-hint">@t["code.hint", Model.MaskedMobile]</p>
+            </div>
+
+            <partial name="Ui/_PasswordField" model="@(new PasswordField("new-password", "NewPassword", t["password.new.label"], "new-password", t["password.hint"]))" />
+            <partial name="Ui/_PasswordField" model="@(new PasswordField("confirm-password", "ConfirmPassword", t["password.confirm.label"], "new-password"))" />
+
+            <button type="submit" class="btn btn--primary btn--block">@t["reset.submit"]</button>
+        </form>
+
+        <p class="form-footer mt-5">
+            <a asp-action="SignIn">@t["back.signin"]</a>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+@{
+    var t = Ui.For("admin/shared/layout");
+    var title = ViewData["Title"] as string;
+    var otherLanguage = Ui.IsEnglish ? Cultures.Fa : Cultures.En;
+    // Only the staff cookie counts here: on the sign-in page the current user may be a signed-in *member*.
+    var signedIn = User.Identities.Any(identity => identity.IsAuthenticated
+        && identity.AuthenticationType == MoveWell.Web.Authentication.WebAuthSchemes.Staff);
+}
+<!DOCTYPE html>
+<html lang="@Ui.Language" dir="@Ui.Direction">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>@(title is null ? t["title.suffix"] : $"{title} | {t["title.suffix"]}")</title>
+    <link rel="icon" href="~/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="~/css/shared/fonts.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/shared/tokens.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/shared/base.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/shared/components.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin/admin.css" asp-append-version="true" />
+    <script type="module" src="~/js/shared/ui.js" asp-append-version="true"></script>
+</head>
+<body data-density="compact">
+@if (!signedIn)
+{
+    <main class="admin-auth">@RenderBody()</main>
+}
+else
+{
+    <div class="admin">
+        <header class="admin__topbar">
+            <a class="brand" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                <img class="brand__mark" src="~/img/brand/mark.svg" alt="" width="32" height="32" />
+                <span class="brand__name">@Ui.Common["site.name"]</span>
+            </a>
+            <div class="admin__topbar-actions">
+                <a class="nav-link lang-switch" href="@CulturePath.For(Context.Request, otherLanguage)" lang="@otherLanguage">
+                    <svg class="icon" aria-hidden="true"><use href="@(Url.Content("~/icons/sprite.svg"))#globe" /></svg>
+                    <span>@Ui.Common["lang.switch"]</span>
+                </a>
+                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">@t["nav.view_site"]</a>
+                <span class="user-chip"><span class="user-chip__name">@User.Identity!.Name</span></span>
+                <form class="inline-form" method="post" asp-area="Admin" asp-controller="Account" asp-action="SignOut">
+                    <button type="submit" class="btn btn--ghost btn--sm">@t["nav.signout"]</button>
+                </form>
+            </div>
+        </header>
+
+        <aside class="admin__sidebar">
+            <nav class="admin__nav" aria-label="@t["nav.admin"]">
+                <a class="nav-link" asp-area="Admin" asp-controller="Dashboard" asp-action="Index" aria-current="page">
+                    <svg class="icon" aria-hidden="true"><use href="@(Url.Content("~/icons/sprite.svg"))#layout" /></svg>@t["nav.dashboard"]
+                </a>
+                <span class="nav-link" aria-disabled="true">
+                    <svg class="icon" aria-hidden="true"><use href="@(Url.Content("~/icons/sprite.svg"))#move" /></svg>@t["nav.exercises"] · @t["nav.soon"]
+                </span>
+                <span class="nav-link" aria-disabled="true">
+                    <svg class="icon" aria-hidden="true"><use href="@(Url.Content("~/icons/sprite.svg"))#tag" /></svg>@t["nav.taxonomy"] · @t["nav.soon"]
+                </span>
+                <span class="nav-link" aria-disabled="true">
+                    <svg class="icon" aria-hidden="true"><use href="@(Url.Content("~/icons/sprite.svg"))#image" /></svg>@t["nav.media"] · @t["nav.soon"]
+                </span>
+            </nav>
+        </aside>
+
+        <main class="admin__main" id="main">@RenderBody()</main>
+    </div>
+}
+</body>
+</html>

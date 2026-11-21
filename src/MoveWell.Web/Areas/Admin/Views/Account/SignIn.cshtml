@@ -1,0 +1,21 @@
+@model SignInForm
+@{
+    var t = Ui.For("admin/shared/layout");
+    var account = Ui.For("public/account/account");
+    ViewData["Title"] = t["signin.title"].Value;
+}
+<div class="card auth-card card--narrow">
+    <div class="cluster">
+        <img class="brand__mark" src="~/img/brand/mark.svg" alt="" width="32" height="32" />
+        <h1>@t["signin.title"]</h1>
+    </div>
+    <p class="text-muted mt-5">@t["signin.lead"]</p>
+
+    <form class="form mt-5" method="post" asp-area="Admin" asp-controller="Account" asp-action="SignIn" data-guard novalidate>
+        <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+        <partial name="Ui/_FormErrors" model="Model.Errors" />
+        <partial name="Ui/_MobileField" model="Model.Mobile" />
+        <partial name="Ui/_PasswordField" model="@(new PasswordField("password", "Password", account["password.label"], "current-password"))" />
+        <button type="submit" class="btn btn--primary btn--block">@t["signin.submit"]</button>
+    </form>
+</div>

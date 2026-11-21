@@ -1,0 +1,18 @@
+{
+  "title.suffix": "MoveWell Admin",
+  "nav.dashboard": "Dashboard",
+  "nav.exercises": "Exercises",
+  "nav.taxonomy": "Categories",
+  "nav.media": "Media",
+  "nav.soon": "soon",
+  "nav.view_site": "View site",
+  "nav.signout": "Sign out",
+  "nav.admin": "Admin menu",
+  "signin.title": "Admin sign in",
+  "signin.lead": "This area is for MoveWell staff only.",
+  "signin.submit": "Sign in",
+  "signin.not_staff": "This account has no access to the admin area.",
+  "dashboard.title": "Dashboard",
+  "dashboard.welcome": "Hello {0}, welcome to the admin area.",
+  "dashboard.next": "Managing the exercise library (exercises, categories and media) is added here in the next gate (G1)."
+}

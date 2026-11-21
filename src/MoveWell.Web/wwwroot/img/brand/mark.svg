@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="MoveWell">
+  <!-- Placeholder mark until a brand identity exists (D-10): a soft tile with a flowing "movement" curve. -->
+  <rect width="40" height="40" rx="12" fill="#0f766e"/>
+  <path d="M9 26c4-9 7-13 11-13s5 6 9 6c2 0 3-1 3-1" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="29" cy="11" r="3" fill="#f97362"/>
+</svg>

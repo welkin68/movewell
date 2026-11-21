@@ -1,0 +1,34 @@
+{
+  "site.name": "MoveWell",
+  "site.tagline": "Learn corrective and everyday exercises",
+  "site.description": "MoveWell helps you understand corrective and everyday exercises and perform them correctly.",
+  "skip.content": "Skip to main content",
+
+  "nav.home": "Home",
+  "nav.library": "Exercise library",
+  "nav.account": "My account",
+  "nav.signin": "Sign in",
+  "nav.register": "Create account",
+  "nav.signout": "Sign out",
+  "nav.main": "Main menu",
+  "nav.bottom": "Bottom menu",
+
+  "lang.switch": "فارسی",
+  "lang.switch.label": "تغییر به فارسی",
+
+  "footer.disclaimer": "MoveWell content is for education only and does not replace medical diagnosis or treatment. If you have pain or an injury, talk to a doctor or physiotherapist before doing any exercise.",
+  "footer.rights": "© {0} MoveWell",
+
+  "user.greeting": "{0}",
+  "form.show_password": "Show password",
+  "form.errors_title": "Please check the following:",
+  "toast.close": "Close",
+
+  "flash.welcome": "Welcome! Your account is ready.",
+  "flash.signed_in": "You are signed in.",
+  "flash.signed_out": "You are signed out.",
+  "flash.code_sent": "A new code was sent.",
+  "flash.password_reset": "Your password was changed. Sign in with the new password.",
+
+  "error.api_unavailable": "The service is not available right now. Please try again shortly."
+}

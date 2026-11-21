@@ -1,0 +1,8 @@
+{
+  "title": "Error",
+  "404.title": "Page not found",
+  "404.text": "The page you were looking for does not exist or has moved.",
+  "general.title": "Something went wrong",
+  "general.text": "We could not show this page. Please try again.",
+  "back.home": "Back to home"
+}

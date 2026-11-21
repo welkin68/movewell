@@ -1,0 +1,9 @@
+@{
+    var common = Ui.Common;
+}
+<footer class="site-footer">
+    <div class="container site-footer__row">
+        <p class="site-footer__disclaimer">@common["footer.disclaimer"]</p>
+        <p>@common["footer.rights", DateTime.UtcNow.Year.ToString(CultureInfo.CurrentCulture)]</p>
+    </div>
+</footer>

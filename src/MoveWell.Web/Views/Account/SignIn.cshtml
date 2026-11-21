@@ -1,0 +1,27 @@
+@model SignInForm
+@{
+    var t = Ui.For("public/account/account");
+    ViewData["Title"] = $"{t["signin.title"]} | {Ui.Common["site.name"]}";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/account.css" asp-append-version="true" />
+}
+<div class="container auth-page">
+    <div class="card auth-card">
+        <h1 class="auth-card__title">@t["signin.title"]</h1>
+        <p class="auth-card__lead">@t["signin.lead"]</p>
+
+        <form class="form" method="post" asp-action="SignIn" data-guard novalidate>
+            <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+            <partial name="Ui/_FormErrors" model="Model.Errors" />
+            <partial name="Ui/_MobileField" model="Model.Mobile" />
+            <partial name="Ui/_PasswordField" model="@(new PasswordField("password", "Password", t["password.label"], "current-password"))" />
+            <button type="submit" class="btn btn--primary btn--block">@t["signin.submit"]</button>
+        </form>
+
+        <div class="form-footer mt-5">
+            <a asp-action="Forgot">@t["signin.forgot"]</a>
+            <span>@t["signin.no_account"] <a asp-action="Register">@Ui.Common["nav.register"]</a></span>
+        </div>
+    </div>
+</div>

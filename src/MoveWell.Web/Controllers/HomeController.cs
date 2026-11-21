@@ -1,24 +1,18 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using MoveWell.Web.Models;
 
 namespace MoveWell.Web.Controllers;
 
-public class HomeController : Controller
+public sealed class HomeController : Controller
 {
-    public IActionResult Index()
-    {
-        return View();
-    }
+    public IActionResult Index() => View();
 
-    public IActionResult Privacy()
+    /// <summary>Exception handler (500) and status-code pages (404 …) re-execute here.</summary>
+    [Route("error")]
+    [Route("error/{code:int}")]
+    [IgnoreAntiforgeryToken]
+    public IActionResult Error(int? code)
     {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        Response.StatusCode = code ?? StatusCodes.Status500InternalServerError;
+        return View("Error", code);
     }
 }

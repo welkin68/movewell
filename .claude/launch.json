@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "api",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["run", "--project", "src/MoveWell.Api", "--launch-profile", "http"],
+      "port": 5100
+    },
+    {
+      "name": "web",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["run", "--project", "src/MoveWell.Web", "--launch-profile", "http"],
+      "port": 5200
+    }
+  ]
+}

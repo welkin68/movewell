@@ -1,0 +1,17 @@
+@{
+    var common = Ui.Common;
+    var controller = ViewContext.RouteData.Values["controller"] as string;
+    var signedIn = User.Identity?.IsAuthenticated == true;
+}
+<nav class="bottom-nav" aria-label="@common["nav.bottom"]">
+    <a class="bottom-nav__item" asp-controller="Home" asp-action="Index" asp-area=""
+       aria-current="@(controller == "Home" ? "page" : null)">
+        <svg class="icon icon--lg" aria-hidden="true"><use href="@(Url.Content("~/icons/sprite.svg"))#home" /></svg>
+        <span>@common["nav.home"]</span>
+    </a>
+    <a class="bottom-nav__item" asp-controller="Account" asp-action="@(signedIn ? "Index" : "Register")" asp-area=""
+       aria-current="@(controller == "Account" ? "page" : null)">
+        <svg class="icon icon--lg" aria-hidden="true"><use href="@(Url.Content("~/icons/sprite.svg"))#user" /></svg>
+        <span>@(signedIn ? common["nav.account"] : common["nav.register"])</span>
+    </a>
+</nav>

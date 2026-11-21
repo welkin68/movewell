@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\MoveWell.Api\MoveWell.Api.csproj" />
+    <ProjectReference Include="..\..\src\MoveWell.Web\MoveWell.Web.csproj" />
   </ItemGroup>
 
 </Project>

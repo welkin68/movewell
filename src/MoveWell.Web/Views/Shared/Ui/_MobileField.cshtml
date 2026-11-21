@@ -1,0 +1,11 @@
+@model string
+@{
+    var t = Ui.For("public/account/account");
+}
+<div class="field">
+    <label class="field__label" for="mobile">@t["mobile.label"]</label>
+    <input class="input input--ltr" type="tel" id="mobile" name="Mobile" value="@Model"
+           inputmode="tel" autocomplete="tel-national" required maxlength="20" dir="ltr"
+           placeholder="09123456789" aria-describedby="mobile-hint" />
+    <p class="field__hint" id="mobile-hint">@t["mobile.hint"]</p>
+</div>

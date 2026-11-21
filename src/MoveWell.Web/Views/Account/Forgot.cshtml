@@ -1,0 +1,24 @@
+@model ForgotForm
+@{
+    var t = Ui.For("public/account/account");
+    ViewData["Title"] = $"{t["forgot.title"]} | {Ui.Common["site.name"]}";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/account.css" asp-append-version="true" />
+}
+<div class="container auth-page">
+    <div class="card auth-card">
+        <h1 class="auth-card__title">@t["forgot.title"]</h1>
+        <p class="auth-card__lead">@t["forgot.lead"]</p>
+
+        <form class="form" method="post" asp-action="Forgot" data-guard novalidate>
+            <partial name="Ui/_FormErrors" model="Model.Errors" />
+            <partial name="Ui/_MobileField" model="Model.Mobile" />
+            <button type="submit" class="btn btn--primary btn--block">@t["forgot.submit"]</button>
+        </form>
+
+        <p class="form-footer mt-5">
+            <a asp-action="SignIn">@t["back.signin"]</a>
+        </p>
+    </div>
+</div>

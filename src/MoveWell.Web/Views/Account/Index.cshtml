@@ -1,0 +1,24 @@
+@{
+    var t = Ui.For("public/account/account");
+    ViewData["Title"] = $"{t["profile.title"]} | {Ui.Common["site.name"]}";
+    var mobile = User.FindFirst(MoveWell.Web.Authentication.SessionCookie.MobileClaim)?.Value ?? string.Empty;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/account.css" asp-append-version="true" />
+}
+<div class="container auth-page">
+    <div class="card auth-card stack">
+        <h1 class="auth-card__title">@t["profile.title"]</h1>
+        <p class="text-muted">@t["profile.lead"]</p>
+        <dl class="stack stack--tight">
+            <dt class="field__label">@t["profile.name"]</dt>
+            <dd>@User.Identity?.Name</dd>
+            <dt class="field__label">@t["profile.mobile"]</dt>
+            <dd class="ltr">@mobile</dd>
+        </dl>
+        <p class="field__hint">@t["profile.more"]</p>
+        <form method="post" asp-action="SignOut">
+            <button type="submit" class="btn btn--ghost btn--block">@t["profile.signout"]</button>
+        </form>
+    </div>
+</div>

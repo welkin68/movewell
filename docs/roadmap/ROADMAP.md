@@ -1,6 +1,6 @@
 # Roadmap (gates)
 
-> v0.2 · 2026-11-20 · v0.2: FA+EN at launch, OTP enabled, one staff person · A gate closes only when its exit criteria are met. **Current gate: G0.**
+> v0.2 · 2026-11-20 · v0.2: FA+EN at launch, OTP enabled, one staff person · A gate closes only when its exit criteria are met. **Current gate: G1** (G0 closed 2026-11-21).
 
 ## MVP = G0 → G3
 A guest can browse and learn exercises; the specialist manages the library from Admin; members can register with mobile + password. Free for everyone (D-03).
@@ -17,14 +17,14 @@ A guest can browse and learn exercises; the specialist manages the library from 
 - [x] `Directory.Build.props` (net10.0, nullable, shared versions), `global.json`
 - [x] Serilog + correlation id, global error handling (ProblemDetails), health check (`/health/live`, `/health/ready`) — Api
 - [x] SQL Server (LocalDB on dev), first migration `InitialIdentityProfilesOtp`, role seeding (+ first Admin when configured)
-- [ ] Web shell: RTL/LTR, Vazirmatn local, theme tokens, `fa-IR` default + `en-US` under `/en` (D-12), shared localization (JSON)
+- [x] Web shell: RTL/LTR, Vazirmatn local, Calm Clinic tokens, `fa-IR` default + `en-US` under `/en` (D-12), shared JSON localization
 - [x] Identity: Admin + Content roles (staff), Member role; mobile + password; 1:1 `UserProfile`; JWT access + rotating refresh tokens (Api)
 - [x] SMS OTP via `ISmsSender` (Dev adapter logs code): registration verification + password reset (Api)
 - [x] `ArchitectureTests` (layer dependency checks) — 3 green
 - [x] Smoke tests for Api auth (14, WebApplicationFactory + LocalDB)
-- [ ] Web shell + BFF sign-in/registration pages; Web smoke tests
+- [x] BFF account pages (register, verify, sign in/out, forgot, reset, my account) + admin sign-in/dashboard shell; Web smoke tests (14)
 
-**Exit:** `dotnet build` green; Api + Web start locally; staff can sign in to `/Admin`; a member can register/sign in with mobile + password; smoke tests green.
+**Exit:** `dotnet build` green; Api + Web start locally; staff can sign in to `/Admin`; a member can register/sign in with mobile + password; smoke tests green. Met 2026-11-21 (96 tests green; also checked in the browser).
 
 ### G1 — Exercise library (Admin)
 - [ ] Answer Q-05, Q-06, Q-09, Q-13, (Q-07)

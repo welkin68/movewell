@@ -1,0 +1,34 @@
+{
+  "site.name": "MoveWell",
+  "site.tagline": "آموزش حرکات اصلاحی و ورزشی",
+  "site.description": "MoveWell به شما کمک می‌کند حرکات اصلاحی و ورزشی را بشناسید و درست انجام دهید.",
+  "skip.content": "رفتن به محتوای اصلی",
+
+  "nav.home": "خانه",
+  "nav.library": "کتابخانه حرکات",
+  "nav.account": "حساب من",
+  "nav.signin": "ورود",
+  "nav.register": "ثبت‌نام",
+  "nav.signout": "خروج",
+  "nav.main": "منوی اصلی",
+  "nav.bottom": "منوی پایین",
+
+  "lang.switch": "English",
+  "lang.switch.label": "Switch to English",
+
+  "footer.disclaimer": "محتوای MoveWell فقط آموزشی است و جایگزین تشخیص یا درمان پزشکی نیست. اگر درد یا آسیب دارید، پیش از انجام حرکات با پزشک یا فیزیوتراپیست مشورت کنید.",
+  "footer.rights": "© {0} MoveWell",
+
+  "user.greeting": "{0}",
+  "form.show_password": "نمایش رمز",
+  "form.errors_title": "لطفاً موارد زیر را بررسی کنید:",
+  "toast.close": "بستن",
+
+  "flash.welcome": "خوش آمدید! حساب شما ساخته شد.",
+  "flash.signed_in": "وارد حساب شدید.",
+  "flash.signed_out": "از حساب خارج شدید.",
+  "flash.code_sent": "کد تأیید دوباره ارسال شد.",
+  "flash.password_reset": "رمز عبور تغییر کرد. با رمز جدید وارد شوید.",
+
+  "error.api_unavailable": "سرویس فعلاً در دسترس نیست. چند لحظه بعد دوباره تلاش کنید."
+}
